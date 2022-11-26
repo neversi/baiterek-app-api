@@ -40,6 +40,9 @@ func main() {
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.Status(200)
+	})
 
 	router.POST("/post", func(ctx *gin.Context) {
 		cc := resty.New()
