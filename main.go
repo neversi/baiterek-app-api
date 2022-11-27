@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/neversi/baiterek-app-api/config"
-	"github.com/neversi/baiterek-app-api/service"
 	"log"
 	"os"
 	"os/signal"
@@ -10,6 +8,9 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/neversi/baiterek-app-api/config"
+	"github.com/neversi/baiterek-app-api/service"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -69,7 +70,7 @@ func main() {
 		}
 		logintoken := getLoginToken(resp.Body())
 
-		time.Sleep(1 * time.Second)
+		time.Sleep(300 * time.Millisecond)
 
 		resp, err = cc.R().
 			SetFormData(map[string]string{
