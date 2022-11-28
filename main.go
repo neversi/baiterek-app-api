@@ -17,13 +17,6 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
-type MoodleForm struct {
-	Username   string `json:"username"`
-	Password   string `json:"password"`
-	Remember   int    `json:"rememberusername"`
-	LoginToken string `json:"logintoken"`
-}
-
 func main() {
 	conf := config.ReadConfig("./.secrets/bot.yml")
 	newBot := service.NewBot(conf)
@@ -97,6 +90,12 @@ func main() {
 
 	go func() {
 		if err := router.Run(":3000"); err != nil {
+			log.Println(err)
+		}
+	}()
+
+	go func() {
+		if err := service.StartSMTPServer(":25"); err != nil {
 			log.Println(err)
 		}
 	}()

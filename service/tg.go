@@ -84,8 +84,7 @@ const (
 )
 
 func (tb *TGBot) authorize(update tgbotapi.Update) bool {
-	val := tb.authStorage.Get(update.Message.From.UserName)
-	if val != nil && val.Authorized {
+	if val := tb.authStorage.Get(update.Message.From.UserName); val != nil && val.Authorized {
 		return false
 	}
 
